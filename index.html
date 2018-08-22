@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,11 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity=
     "sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href='{{ url_for('static', filename='index.css') }}'/>
+    <link rel="stylesheet" type="text/css" media="screen" href='static/index.css'/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script id="event" type="text/x-handlebars-template">
         <li>
-            {% raw -%}
             <input class='radio' id='work{{ num }}' name='works' type='radio'>
             {{#unless top_row}}
                 <div class="relative">
@@ -30,21 +29,18 @@
                     <span class='circle circle-{{ row }}'></span>
                 </div>
             {{/if}}
-            {%- endraw %}
         </li>
     </script>
     <script id="date" type="text/x-handlebars-template">
         <li>
-            {% raw -%}
             <div class='content content-{{ row }}' id='date{{ num }}'>
                 <div class='wrapper-date' id='date-wrap{{ num }}'>
                     <p class="no-cursor">{{date_text}}</p>
                 </div>
             </div>
-            {%- endraw %}
         </li>
     </script>
-    <script src='{{ url_for('static', filename='index.js') }}'></script>
+    <script src='static/index.js'></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
