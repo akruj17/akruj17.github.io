@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,40 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity=
     "sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href='static/index.css'/>
+    <link rel="stylesheet" type="text/css" media="screen" href='{{ url_for('static', filename='index.css') }}'/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script id="event" type="text/x-handlebars-template">
         <li>
+            {% raw -%}
             <input class='radio' id='work{{ num }}' name='works' type='radio'>
             {{#unless top_row}}
                 <div class="relative">
-                    <label class='label-{{ row }}' for='work{{ num }}'>{{ title }}</label>
-                    <span class='circle circle-{{ row }}'></span>
+                    <label class='label-{{ row }} transition-element' for='work{{ num }}'>{{ title }}</label>
+                    <span class='circle circle-{{ row }} transition-element'></span>
                 </div>
             {{/unless}}
-            <div class='content content-{{ row }}' id='event{{ num }}'>
-                <div class="wrapper wrapper-{{ row }}" id='event-wrap{{ num }}'>
-                    <p>{{ paragraph_detailed}}</p>
+            <div class='content content-{{ row }} transition-element' id='event{{ num }}'>
+                <div class="wrapper wrapper-{{ row }} transition-element" id='event-wrap{{ num }}'>
+                    <p class="transition-element">{{ paragraph_detailed}}</p>
                 </div>
             </div>
             {{#if top_row}}
                 <div class="relative">
-                    <label class='label-{{ row }}' for='work{{ num }}'>{{ title }}</label>
-                    <span class='circle circle-{{ row }}'></span>
+                    <label class='label-{{ row }} transition-element' for='work{{ num }}'>{{ title }}</label>
+                    <span class='circle circle-{{ row }} transition-element'></span>
                 </div>
             {{/if}}
+            {%- endraw %}
         </li>
     </script>
     <script id="date" type="text/x-handlebars-template">
         <li>
-            <div class='content content-{{ row }}' id='date{{ num }}'>
-                <div class='wrapper-date' id='date-wrap{{ num }}'>
+            {% raw -%}
+            <div class='content content-{{ row }} transition-element' id='date{{ num }}'>
+                <div class='wrapper-date transition-element' id='date-wrap{{ num }}'>
                     <p class="no-cursor">{{date_text}}</p>
                 </div>
             </div>
+            {%- endraw %}
         </li>
     </script>
-    <script src='static/index.js'></script>
+    <script src='{{ url_for('static', filename='index.js') }}'></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
@@ -77,16 +81,16 @@
             </ul>
         </div>
     </nav>
-    <!-- <div class="position-relative" style="height: 300px;"> -->
-        <div class="row intro">
-            <div class="col-4 col-md-2 offset-4 offset-md-0">
+    <div class="row intro">
+        <div class="col-4 col-md-2 offset-4 offset-md-0 photo-container">
+            <div id="cat">
                 <img src="static/profilephoto2.jpg" class="profilephoto" alt='a photo of me'/>
             </div>
-            <div class="col-10 offset-1 offset-md-0 intro-text-container">
-                <p class="intro-text"></p>
-            </div>
         </div>
-    <!-- </div> -->
+        <div class="col-10 offset-1 offset-md-0 intro-text-container">
+            <p class="intro-text"></p>
+        </div>
+    </div>
     <div class="timeline-container">
         <div style="height: 330px; position:relative;">
             <div style="position: absolute; bottom: 0px; left: 0;">
@@ -95,13 +99,10 @@
         </div>
         <div style="height: 330px;">
                 <ul class="timeline" id='timeline-bottom'></ul>
-
-            </div>
-        <!-- <div class="col-12">
-        </div> -->
+        </div>
     </div>
     <div id="background"></div>
-    <!-- <footer>Made by Arjun Kunjilwar | Photo taken from rooftop of Austin Public Library</footer> -->
+    <footer>Made by Arjun Kunjilwar | Photo taken from rooftop of Austin Public Library</footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

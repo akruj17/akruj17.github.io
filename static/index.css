@@ -16,23 +16,14 @@ body {
 html {
         overflow: hidden;
         height: 100%;
-    }
+}
     
-    body {
+body {
         height: 100%;
         overflow-y: scroll;
-    }
-
-h2 {
-        margin: 3em 0 0 0;
-        font-size: 1.5em;
-        letter-spacing: 2px;
-        text-transform: uppercase;
+        overflow-x: hidden;
 }
 
-/* -------------------------------------
- * timeline
- * ------------------------------------- */
 .timeline {
         list-style: none;
         padding: 0;
@@ -41,16 +32,18 @@ h2 {
 }
 
 .timeline-container {
-        overflow: scroll;
+        overflow-x: scroll;
 }
 
 #timeline-top {
         margin-bottom: 0;
+        padding-left: 30px;
+        z-index: 40;
 }
 
 #timeline-bottom {
         border-top: 8px solid transparent;
-        margin: -8px 0 0 -30px;
+        margin: -8px 0 0 0px;
         position: relative;
 }
 
@@ -66,9 +59,11 @@ h2 {
 .timeline li {
         display: table-cell;
 }
+
 .timeline li .relative {
         position: relative;
 }
+
 .timeline p {
         margin: 0 0 15px;
 }
@@ -254,7 +249,8 @@ label {
 .radio:checked ~ .relative label {
         cursor: auto;
         width: 500px;
-        transition: width 0.3s linear 0.2s;
+        transition: width 0.3s linear;
+        transition-delay: 1.1s;
 }
 .radio:checked ~ .relative .circle {
         background: rgba(238, 233, 220, 1.0) ;
@@ -274,7 +270,8 @@ label {
 .radio:checked ~ .content p {
         max-height: 280px;
         color: #000;
-        transition: color 0.3s linear 0.3s;
+        transition: color 1.0s linear;
+        transition-delay: 1.1s;
 }
 
 .no-cursor {
@@ -284,25 +281,33 @@ label {
 
 
 .navbar {
--webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
--moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
 }
 
+
+
 .intro {
-        margin-top: 10vh;
+        margin-top: 85px;
         padding: 0 5%;
+        z-index: 100;
 }
 
 .profilephoto {
         width: 90%;
+        overflow: hidden;
+        z-index: 100;
         border-radius: 50%;
-        float: left;
-        /* margin-right: 20px; */
 }
+
+
+
+
 .intro-text {
         font-size: 1.5em;
-        /* margin-right: 20px; */
+        padding-left: 20px;
+        padding-right: 20px;
 }
 
 footer {
@@ -315,14 +320,90 @@ footer {
         z-index: 50;
      }
 
-     @media (min-width: 768px) {
+@media (min-width: 768px) {
         .collapsed-text {
                 display: none;
         }
-      }
-      
+
+        @keyframes hideText {
+                from {
+                        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+                } to {
+                        clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+                }
+        }
+
+        @keyframes movePhoto {
+                from {
+                        left: 0%;
+                } to {
+                        left: 90%;
+                }
+
+        }
+
+        @keyframes rotatePhoto {
+                from {
+                        transform: rotate(0deg);
+                } to {
+                        transform: rotate(359deg);
+                }
+        }
+
+        .intro-text-container {
+                animation-name: hideText;
+                animation-duration: 1.0s;
+                animation-direction: alternate;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+                animation-play-state: paused;
+        }
+
+        .photo-container {
+                animation-name: movePhoto;
+                animation-duration: 1.0s;
+                animation-direction: alternate;
+                animation-play-state: paused;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+                z-index: 100;
+        }
+
+        .profilephoto {
+                animation-name: rotatePhoto;
+                animation-duration: 1.0s;
+                animation-direction: alternate;
+                animation-play-state: paused;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+        }
+
+        .profilephoto-hover:hover {
+                width: 100%;
+                cursor: pointer;
+        }
+
+        .photo-container {
+                animation-name: movePhoto;
+                animation-duration: 1.0s;
+                animation-direction: alternate;
+                animation-play-state: paused;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
+                z-index: 100;
+        }
+
+        .timeline-container {
+                margin-top: -150px;
+        }
+        .transition-element {
+                transition-delay: 1.1s;
+        }
+
+}
+
       /* mobile navbar */
-      @media (max-width: 767px) {
+@media (max-width: 767px) {
         .collapsed-text {
                 display: inline;
         }
@@ -346,17 +427,29 @@ footer {
         label {
                 font-size: 1.0em;
         }
-      }
-
-      .top-nav-collapse {
-        background-color: #424f95 !important;
-    }
-    .navbar:not(.top-nav-collapse) {
-        background: transparent !important;
-    }
-    @media (max-width: 768px) {
-        .navbar:not(.top-nav-collapse) {
-            background: #424f95 !important;
+        .photo-container {
+                left: 0%;
         }
-    }
+        .transition-element {
+                transition-delay: 0s;
+        }
+}
+
+.top-nav-collapse {
+        background-color: #424f95 !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+        background: transparent !important;
+}
+
+@media (max-width: 768px) {
+        .navbar:not(.top-nav-collapse) {
+                background: #424f95 !important;
+        }
+
+        .intro {
+               position: relative;
+        }
+}
 
