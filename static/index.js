@@ -138,7 +138,7 @@ function changeIntro(showIntro , moveCircle) {
 
 function watchForCollision() {
     document.querySelector('.timeline-container').onscroll = function() {
-        let photo = document.querySelector('.profilePhoto')
+        let photo = document.querySelector('.profilephoto')
         const rect = currentEvent.getBoundingClientRect()
         if (circleOnRightSide) {
             let rectEndPos = rect.x + rect.width + 20
