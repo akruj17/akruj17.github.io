@@ -8,39 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity=
     "sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href='static/index.css'/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-    <script id="event" type="text/x-handlebars-template">
-        <li>
-            <input class='radio' id='work{{ num }}' name='works' type='radio'>
-            {{#unless top_row}}
-                <div class="relative">
-                    <label class='label-{{ row }} transition-element' for='work{{ num }}'>{{ title }}</label>
-                    <span class='circle circle-{{ row }} transition-element'></span>
-                </div>
-            {{/unless}}
-            <div class='content content-{{ row }} transition-element' id='event{{ num }}'>
-                <div class="wrapper wrapper-{{ row }} transition-element" id='event-wrap{{ num }}'>
-                    <p class="transition-element">{{ paragraph_detailed}}</p>
-                </div>
-            </div>
-            {{#if top_row}}
-                <div class="relative">
-                    <label class='label-{{ row }} transition-element' for='work{{ num }}'>{{ title }}</label>
-                    <span class='circle circle-{{ row }} transition-element'></span>
-                </div>
-            {{/if}}
-        </li>
-    </script>
-    <script id="date" type="text/x-handlebars-template">
-        <li>
-            <div class='content content-{{ row }} transition-element' id='date{{ num }}'>
-                <div class='wrapper-date transition-element' id='date-wrap{{ num }}'>
-                    <p class="no-cursor">{{date_text}}</p>
-                </div>
-            </div>
-        </li>
-    </script>
-    <script src='static/index.js'f></script>
+    <link rel="stylesheet" href="static/graph-creator.css" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
@@ -52,59 +20,46 @@
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="navbar-brand" href="static/currentResume.pdf" target='_blank'>
-                        <img src="static/resume_logo.svg" title="resume" width="40" alt=""/>
+                        <img src="static/navbar_logos/resume_logo.svg" title="resume" width="40" alt=""/>
                         <p class="collapsed-text">Resume</p>
                     </a>
                </li>
                 <li class="nav-item">
                     <a class="navbar-brand" href="mailto:arjunkunjilwar@utexas.edu">
-                        <img src="static/email_logo.svg" title="email" width="40" alt=""/>
+                        <img src="static/navbar_logos/email_logo.svg" title="email" width="40" alt=""/>
                         <p class="collapsed-text">Email</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="navbar-brand" href="https://www.linkedin.com/in/arjun-kunjilwar-2021">
-                        <img src="static/linkedin_logo.svg" title="linkedin account" width="40" alt=""/>
+                        <img src="static/navbar_logos/linkedin_logo.svg" title="linkedin account" width="40" alt=""/>
                         <p class="collapsed-text">Linkedin</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="navbar-brand" href="https://github.com/akruj17">
-                        <img src="static/github_logo.svg" title="github account" width="40" alt=""/>
+                        <img src="static/navbar_logos/github_logo.svg" title="github account" width="40" alt=""/>
                         <p class="collapsed-text">Github</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="navbar-brand" href="https://www.facebook.com/people/Arjun-Kunjilwar/100004942788722">
-                        <img src="static/facebook_logo.svg" title="facebook" width="40" alt=""/>
+                        <img src="static/navbar_logos/facebook_logo.svg" title="facebook" width="40" alt=""/>
                         <p class="collapsed-text">Facebook</p>
                     </a>
                 </li> 
             </ul>
         </div>
     </nav>
-    <div class="row intro">
-        <div class="col-4 col-md-2 offset-4 offset-md-0 photo-container">
-            <div id="cat">
-                <img src="static/profilephoto3.jpg" class="profilephoto" alt='a photo of me'/>
-            </div>
-        </div>
-        <div class="col-10 offset-1 offset-md-0 intro-text-container">
-            <p class="intro-text"></p>
-        </div>
+    <div id="popup-text">
+        <h3 id="popup-header">TITLE</h3>
+        <button id="close-button" onclick="closeClicked()"></button>
+        <p id="popup-detailed">DESCRIPTION</p>
     </div>
-    <div class="timeline-container">
-        <div style="height: 330px; position:relative;">
-            <div style="position: absolute; bottom: 0px; left: 0;">
-                <ul class="timeline" id='timeline-top'></ul>
-            </div>
+    <div id="graph">
         </div>
-        <div style="height: 330px;">
-                <ul class="timeline" id='timeline-bottom'></ul>
-        </div>
-    </div>
-    <div id="background"></div>
-    <footer>Made by Arjun Kunjilwar | Photo taken from rooftop of Austin Public Library</footer>
+        <script src="https://d3js.org/d3.v3.js" charset="utf-8"></script>
+        <script src="static/graph-creator.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

@@ -1,0 +1,81 @@
+#graph {
+    margin-top: 65px;
+    width: 1434.5px;
+    height: 660px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p{ 
+     text-align: left; 
+     overflow: overlay;
+     position: relative;
+}
+
+rect{
+    stroke: rgba(31, 97, 224, 0.8);
+    stroke-width: 1px;
+    fill: rgb(240, 240, 240);
+}
+
+marker{
+    fill: #333;
+}
+
+g.conceptG image{
+    fill: rgb(46, 18, 184);
+}
+
+g.conceptG circle {
+    fill: rgb(240, 240, 240);
+    /* stroke: rgb(50,125,255); */
+}
+
+g.conceptG:hover image{
+    fill: rgb(200, 238, 241);
+}
+
+g.selected circle{
+    fill: rgb(250, 232, 255);
+}
+g.selected:hover circle{
+    fill: rgb(250, 232, 255);
+}
+
+path.link {
+    fill: none;
+    /* stroke: #333; */
+    stroke-width: 8px;
+    cursor: default;
+}
+
+g.connect-node circle{
+    fill: #BEFFFF;
+}
+
+path.link.hidden{
+    stroke-width: 0;
+}
+
+.top-nav-collapse {
+    background-color: #424f95 !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+
+@media (max-width: 768px) {
+    .navbar:not(.top-nav-collapse) {
+            background: #424f95 !important;
+    }
+
+    .intro {
+           position: relative;
+    }
+}
+
+strong {
+    font-weight: 700;
+}
+
