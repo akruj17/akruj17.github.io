@@ -306,23 +306,24 @@ document.onload = (function(d3, saveAs, Blob, undefined){
     let minWidth = 1434.5;
     let minHeight = 780;
     let scale = 1.0
-    if (x < minWidth) {
-        scale = x / minWidth
-    }
-    if (y < minHeight) {
-        scale = Math.min(scale, y / minHeight)
-    }
+    scale = x / minWidth
+    scale = Math.min(scale, y / minHeight)
+    scale = Math.min(scale, 2.0)
     d3.select("." + this.consts.graphClass)
       .attr("transform", "scale(" + scale + ")");
 
     let gRect = document.getElementById('me.png').getBoundingClientRect()
-    let middlePos = gRect.x + (gRect.width / 2.0)
-    let newMiddle = parseInt(document.getElementsByTagName('svg')[0].getAttribute('width'), 10) / 2.0
-    let translateAmount = (newMiddle - middlePos) / scale
+    let svgRect = document.getElementsByTagName('svg')[0].getBoundingClientRect()
+    let middleX = gRect.x + (gRect.width / 2.0)
+    let middleY = gRect.y + (gRect.height / 2.0)
+    let newMiddleX = parseInt(svgRect.x + svgRect.width, 10) / 2.0
+    let newMiddleY = parseInt(svgRect.y + svgRect.height, 10) / 2.0
+    let translateAmountX = (newMiddleX - middleX) / scale
+    let translateAmountY = (newMiddleY - middleY) / scale
 
     let currTransform = d3.select("." + this.consts.graphClass).attr('transform')
     d3.select("." + this.consts.graphClass)
-      .attr("transform", currTransform + " translate(" + translateAmount + ",0)");
+      .attr("transform", currTransform + " translate(" + translateAmountX + "," + translateAmountY + ")");
     document.getElementById("popup-text").style.transform = "scale(" + scale + ")";
     document.getElementById('popup-text').style.display = 'none'
   };
