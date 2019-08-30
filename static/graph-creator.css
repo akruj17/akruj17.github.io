@@ -77,6 +77,10 @@ path.link.hidden{
     .intro {
            position: relative;
     }
+
+    #graph {
+        margin-top: 0px;
+    }
 }
 
 strong {
